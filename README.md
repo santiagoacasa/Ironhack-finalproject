@@ -23,23 +23,20 @@ Se basara en los reflejos del jugador ya que el personaje ira cambiando aleatori
 ## Links
 ​
 ### Git
-Repositorio: 
 
-https://github.com/santiagoacasa/ironhack-finalproject.git
-​
-### Deploy 
-​
-### Slides
-​
+[Github Repo](https://github.com/santiagoacasa/ironhack-finalproject.git)
+
 ### Kanban
 
-https://santiago-casa.atlassian.net/jira/software/projects/IRON/boards/1
+[Jira board](https://santiago-casa.atlassian.net/jira/software/projects/IRON/boards/1)
 
 ## Backlog
 * Dibujar diferentes tipos de formas para los obstaculos.
 * Hacer cambiar a un color aleatorio al jugador cada X cantidad de tiempo.
 * Acelerar la velocidad de los obstaculos.
 * Hacer que los obstaculos tambien vayan cambiando su color.
+* Guardar los high scores
+
 
 
 
