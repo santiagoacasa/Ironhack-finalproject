@@ -24,15 +24,16 @@ Se basara en los reflejos del jugador ya que el personaje ira cambiando aleatori
 ​
 ### Git
 Repositorio: 
-(https://github.com/santiagoacasa/ironhack-finalproject.git)
+
+https://github.com/santiagoacasa/ironhack-finalproject.git
 ​
-// Deploy: (no ahora, para un futuro)
+### Deploy 
 ​
 ### Slides
 ​
 ### Kanban
 
-(https://santiago-casa.atlassian.net/jira/software/projects/IRON/boards/1) 
+https://santiago-casa.atlassian.net/jira/software/projects/IRON/boards/1
 
 ## Backlog
 * Dibujar diferentes tipos de formas para los obstaculos.
