@@ -24,19 +24,19 @@ const player = {
        this.dibujar();
     },
     mover(event){
-        switch (event.key) {
+        switch (event.code) {
             case "ArrowLeft":
-                if(this.x > 0){
+                if(this.x >= 0){
                     this.x -= this.speedX;
                 }
                 break;
             case "ArrowRight":
-                if(this.x < canvas.width){
+                if(this.x <= canvas.width){
                     this.x += this.speedX;
                 }
                 break;
             case "ArrowUp":
-                if(this.y > 0){
+                if(this.y >= 0){
                     this.y -= this.speedY;
                 }
                 break;
