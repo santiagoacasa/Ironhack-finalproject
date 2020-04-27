@@ -8,7 +8,7 @@
 </head>
 <body>
     <header><h1 id="titulo">----- EL NOMBRE DEL JUEGO IRIA ACA ------</h1></header>
-    <main>
+    <div id="container">
         <div id="juegoContainer"> <!--Aplicar aca las dimensiones del area de juego-->
             <!--CANVAS-->
             <canvas id="canvas" class="areaJuego" width="500" height="400"></canvas>
@@ -27,12 +27,16 @@
             </div>
         </div>
         <aside id="infoDeJuego">
-            <h3 id="nombreUsuario"><span></span></h3>
-            <h3 id="score">Score: <span>0</span>pts</h3>
-            <h3 id="vidas">Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span></h3> <!--codigo emoji corazon verde &#128154-->
+            <h2 id="nombreUsuario"><span></span></h2>
+            <h2 id="score">Score: <span>0</span>pts</h2>
+            <h2 id="vidas">Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span></h2> <!--codigo emoji corazon verde &#128154-->
+            <div id="highScore">
+                <h3>High Scores</h3>
+            </div>
         </aside>
-    </main>
+    </div>
     <footer><p>&copy Hecho por SantiCasa</p></footer>
-    <script src="juego.js"></script>
+    <script src="scripts/juego.js"></script>
+    <script src="scripts/gameArea.js"></script>
 </body>
 </html>
