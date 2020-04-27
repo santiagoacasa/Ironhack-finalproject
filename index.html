@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ironhack-Game</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <header><h1>-----> EL NOMBRE DEL JUEGO IRIA ACA <------</h1></header>
+    <header><h1 id="titulo">----- EL NOMBRE DEL JUEGO IRIA ACA ------</h1></header>
     <main>
         <div id="juegoContainer"> <!--Aplicar aca las dimensiones del area de juego-->
             <!--CANVAS-->
-            <canvas id="canvas" width="400" height="400"></canvas>
+            <canvas id="canvas" class="areaJuego" width="500" height="400"></canvas>
             <!--DATOS DEL USUARIO-->
             <div id="askName" class="areaJuego">
                 <h2>¿Como te llamas?</h2>
@@ -32,5 +33,6 @@
         </aside>
     </main>
     <footer><p>&copy Hecho por SantiCasa</p></footer>
+    <script src="juego.js"></script>
 </body>
 </html>
