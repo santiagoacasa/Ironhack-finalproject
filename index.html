@@ -6,6 +6,31 @@
     <title>Ironhack-Game</title>
 </head>
 <body>
-    
+    <header><h1>-----> EL NOMBRE DEL JUEGO IRIA ACA <------</h1></header>
+    <main>
+        <div id="juegoContainer"> <!--Aplicar aca las dimensiones del area de juego-->
+            <!--CANVAS-->
+            <canvas id="canvas" width="400" height="400"></canvas>
+            <!--DATOS DEL USUARIO-->
+            <div id="askName" class="areaJuego">
+                <h2>¿Como te llamas?</h2>
+                <div>
+                    <input type="text" name="playerName" placeholder="Nombre">
+                    <div><button>Aceptar</button></div>
+                </div>
+            </div>
+            <div id="reglas" class="areaJuego">
+                <h2>Reglas del juego</h2>
+                <p>ACA VAN LAS REGLAS DEL JUEGO<p>
+                <div><button>JUGAR</button></div>
+            </div>
+        </div>
+        <aside id="infoDeJuego">
+            <h3 id="nombreUsuario"><span></span></h3>
+            <h3 id="score">Score: <span>0</span>pts</h3>
+            <h3 id="vidas">Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span></h3> <!--codigo emoji corazon verde &#128154-->
+        </aside>
+    </main>
+    <footer><p>&copy Hecho por SantiCasa</p></footer>
 </body>
 </html>
