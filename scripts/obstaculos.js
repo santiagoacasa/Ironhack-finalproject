@@ -6,7 +6,7 @@ const obstaculos = {
     crear() {
         let obst = {
             x: 0,
-            y:0,
+            y:20, //Valor de prueba
             width: 20,
             height: 20,
             speedX: 12,
@@ -23,6 +23,11 @@ const obstaculos = {
             context.fillRect(Math.random() * canvas.width, elem.y, elem.width, elem.height);
         });
     },
+    updatePosicion(){
+        this.obstaculos.forEach(elem => {
+            elem.y += 5;
+        })
+    }
 
 }
 
