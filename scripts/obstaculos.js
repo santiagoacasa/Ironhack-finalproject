@@ -1,12 +1,36 @@
 "use strict"
+class Obstaculo {
+    constructor(canvas, x){
+        this.size = 20;
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext("2d");
+        this.red = 'rgb(255,0,0)';
+        this.green = 'rgb(0,255,0)';
+        this.blue = 'rgb(0,0,255)';
+        this.arrRGB = [];
+        this.x = x;
+        this.y = 0;
+        this.speed = 5;
+        this.direction = -1;
+    }​
+    update() {
+        this.x = this.x + this.direction * this.speed;
+    }​
+    draw() {
+        this.ctx.fillStyle = "red";
+        this.ctx.fillRect(this.x, this.y - this.size / 2, this.size, this.size);
+    }​
+    setDirection(direction) {
+        this.direction = direction;
+    }
+};
 
-const obstaculos = {
-    obstaculos: [],
+/* const obstaculos = {
     arrRGB: ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)'],
     crear() {
         let obst = {
             x: 0,
-            y:20, //Valor de prueba
+            y: 20, //Valor de prueba
             width: 20,
             height: 20,
             speedX: 12,
@@ -23,32 +47,11 @@ const obstaculos = {
             context.fillRect(Math.random() * canvas.width, elem.y, elem.width, elem.height);
         });
     },
-    updatePosicion(){
+    updatePosicion() {
         this.obstaculos.forEach(elem => {
             elem.y += 5;
         })
     }
 
 }
-
-/*class Enemy {
-    constructor(canvas, y) {
-        this.size = 20;
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
-        this.x = this.canvas.width;
-        this.y = y;
-        this.speed = 5;
-        this.direction = -1;
-    }​
-    update() {
-        this.x = this.x + this.direction * this.speed;
-    }​
-    draw() {
-        this.ctx.fillStyle = "red";
-        this.ctx.fillRect(this.x, this.y - this.size / 2, this.size, this.size);
-    }​
-    setDirection(direction) {
-        this.direction = direction;
-    }
-}*/
+*/

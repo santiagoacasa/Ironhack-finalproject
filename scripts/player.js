@@ -1,4 +1,6 @@
-/*class Player {
+"use strict"
+
+class Player {
     constructor(canvas){
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
@@ -23,8 +25,8 @@
     };
     iniciarlizar(){
         this.color = this.red;
-        this.x = 250;
-        this.y = canvas.height - this.height;
+        this.x = this.canvas / 2;
+        this.y = this.canvas.height - this.height;
         this.arrRGB.push(this.red, this.green, this.blue);
         this.dibujar();
     };
@@ -36,7 +38,7 @@
                 }
                 break;
             case "ArrowRight":
-                if (this.x <= canvas.width) {
+                if (this.x <= this.canvas.width) {
                     this.x += this.speedX;
                 }
                 break;
@@ -46,7 +48,7 @@
                 }
                 break;
             case "ArrowDown":
-                if (this.y < canvas.height) {
+                if (this.y < this.canvas.height) {
                     this.y += this.speedY;
                 }
                 break;
@@ -58,9 +60,9 @@
         this.lives--;
     }
 
-}*/
+}
 
-const player = {
+/*const player = {
     name: "",
     color: "",
     red: 'rgb(255,0,0)',
@@ -114,4 +116,4 @@ const player = {
         };
     },
 
-}
+}*/
