@@ -10,8 +10,8 @@ class Player {
         this.green = 'rgb(0,255,0)';
         this.blue = 'rgb(0,0,255)';
         this.arrRGB = [];
-        this.x = 0;
-        this.y = 0;
+        this.x = this.canvas.width / 2;
+        this.y = 480;
         this.width = 20;
         this.height = 20;
         this.speedX = 12;

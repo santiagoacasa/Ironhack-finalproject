@@ -15,7 +15,9 @@ class Juego {
                 const x = Math.random() * this.canvas.width;
                 this.obstaculos.push(new Obstaculo(this.canvas, x));
             }
-            this.player.dibujar()
+            
         }
+        this.player.iniciarlizar();
+        this.player.dibujar();
     }
 };

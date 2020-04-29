@@ -1,8 +1,8 @@
 "use strict"
 window.onload = () => {
-    const colorIntervalCallback = function(){
+    /*const colorIntervalCallback = function(){
         randomColor(player);
-    };
+    };*/
     
     //Desde aca iria en el boton "Jugar"
     jugar();

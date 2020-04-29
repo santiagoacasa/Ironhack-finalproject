@@ -1,6 +1,6 @@
 "use strict"
 class Obstaculo {
-    constructor(canvas, x){
+    constructor(canvas, x) {
         this.size = 20;
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
@@ -12,7 +12,7 @@ class Obstaculo {
         this.y = 0;
         this.speed = 5;
         this.direction = -1;
-    }​
+    }​;
     update() {
         this.x = this.x + this.direction * this.speed;
     }​
@@ -23,8 +23,7 @@ class Obstaculo {
     setDirection(direction) {
         this.direction = direction;
     }
-};
-
+}
 /* const obstaculos = {
     arrRGB: ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)'],
     crear() {
