@@ -70,6 +70,7 @@ const jugar = () => {
            juego.player.mover(event)
        }
        document.addEventListener("keydown", movePlayer);
+       const cantidadVidas = document.querySelectorAll("#vidas span")
        //requestAnimationFrame(juego.player.dibujar);
        
    }
