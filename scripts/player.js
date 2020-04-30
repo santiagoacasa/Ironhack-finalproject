@@ -3,32 +3,34 @@
 class Player {
     constructor(canvas){
         this.canvas = canvas;
-        this.context = canvas.getContext('2d');
+        this.context = this.canvas.getContext('2d');
         this.name = "";
         this.color = "";
         this.red = 'rgb(255,0,0)';
         this.green = 'rgb(0,255,0)';
         this.blue = 'rgb(0,0,255)';
         this.arrRGB = [];
-        this.x = this.canvas.width / 2;
-        this.y = 480;
-        this.width = 20;
-        this.height = 20;
+        this.x = 0;
+        this.y = 0;
+        this.size = 20
+        this.directionX = 1;
+        this.directionY = -1;
         this.speedX = 12;
         this.speedY = 12;
         this.lives = 3;
         this.score = 0;
     }
-    dibujar() {
-        this.context.fillStyle = this.color;
-        this.context.fillRect(this.x, this.y, this.width, this.height);
-    };
     iniciarlizar(){
         this.color = this.red;
-        this.x = this.canvas / 2;
-        this.y = this.canvas.height - this.height;
+        this.x = this.canvas.width / 2;
+        this.y = this.canvas.height /2;
         this.arrRGB.push(this.red, this.green, this.blue);
+        this.name = document.querySelector("#nombreUsuario span").innerHTML;
         this.dibujar();
+    };
+    dibujar() {
+        this.context.fillStyle = this.color;
+        this.context.fillRect(this.x, this.y, this.size, this.size);
     };
     mover(event) {
         switch (event.code) {
@@ -56,6 +58,16 @@ class Player {
                 break;
         };
     };
+    checkColision(obstaculo){
+        const colisionDerecha = this.x + this.size / 2 > obstaculo.x - obstaculo.size / 2;
+        const colisionIzquierda = this.x - this.size / 2 < obstaculo.x + obstaculo.size / 2;
+        const colisionArriba = this.y - this.size / 2 < obstaculo.y - obstaculo.size / 2;
+        const colisionAbajo = this.y + this.size / 2 > obstaculo.y + obstaculo.size / 2;
+        if (colisionArriba && colisionDerecha && colisionDerecha && colisionAbajo){
+            return true;
+        } 
+        return false;
+    }
     perderVida(){
         this.lives--;
     }

@@ -22,8 +22,8 @@ const jugar = () => {
 
    const setPlayerName = function () {
        let playerName = document.querySelector("#playerName");
-       let newPlayer = document.querySelector("#nombreUsuario span");
-       newPlayer.innerHTML = `Hola ${playerName.value}!`;
+       let newPlayer = document.querySelector("#nombreUsuario");
+       newPlayer.innerHTML = `Hola <span>${playerName.value}</span>!`;
        buildReglasJuego();
    }
 
@@ -51,10 +51,10 @@ const jugar = () => {
                     <div><button id="botonJugar">JUGAR</button></div>
                 </div>`);
        const botonJugar = document.querySelector("#botonJugar");
-       botonJugar.addEventListener('click', buildCanvas);
+       botonJugar.addEventListener('click', buildGameScreen);
    }
 
-   const buildCanvas = function () {
+   const buildGameScreen = function () {
        buildHtml(`<canvas id="canvas"></canvas>`);
        const width = document.querySelector("#juegoContainer").offsetWidth
        const height = document.querySelector("#juegoContainer").offsetHeight;
@@ -62,8 +62,16 @@ const jugar = () => {
        canvas.setAttribute('width', width);
        canvas.setAttribute('height', height);
        const juego = new Juego(canvas);
+       
+       //ACA ARRANCA EL JUEGO.
        juego.comienzo();
-       document.addEventListener('keydown', event => juego.player.mover(event));
+       juego.player.iniciarlizar()
+       const movePlayer = (event) => { 
+           juego.player.mover(event)
+       }
+       document.addEventListener("keydown", movePlayer);
+       //requestAnimationFrame(juego.player.dibujar);
+       
    }
    buildAskUserName();
 }
