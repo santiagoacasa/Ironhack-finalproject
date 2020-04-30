@@ -1,19 +1,7 @@
 "use strict"
 window.onload = () => {
-    /*const colorIntervalCallback = function(){
-        randomColor(player);
-    };*/
-    
-    //Desde aca iria en el boton "Jugar"
     jugar();
 }
-
-/*function update(){
-    const canvas = document.getElementById("canvas");
-    iniciarCanvas(canvas);
-    player.dibujar(canvas);
-    requestAnimationFrame(update);
-}*/
 
 const jugar = () => {
    const randomColor = function (obj) {
@@ -33,6 +21,7 @@ const jugar = () => {
    }
 
    const buildAskUserName = function () {
+       resetAside();
        buildHtml(`<div id="askName" class="areaJuego">
     <h2>¿Como te llamas?</h2>
     <div>
@@ -61,24 +50,54 @@ const jugar = () => {
        const canvas = document.querySelector("#canvas");
        canvas.setAttribute('width', width);
        canvas.setAttribute('height', height);
+       restaurarVidas();
        const juego = new Juego(canvas);
-       
+       juego.callbackGameOver(buildGameOver);
        //ACA ARRANCA EL JUEGO.
        juego.comienzo();
        juego.player.iniciarlizar()
        const movePlayer = (event) => { 
            juego.player.mover(event)
        }
-       document.addEventListener("keydown", movePlayer);
-       const cantidadVidas = document.querySelectorAll("#vidas span")
-       //requestAnimationFrame(juego.player.dibujar);
-       
+       document.addEventListener("keydown", movePlayer);   
+   }
+
+   const buildGameOver = () => {
+       buildHtml(`<div>
+                <img src="imgs/gameover.png">
+                <div>
+                <p id = "finalScore"></p>
+                <button id="playAgain">Volver a jugar</button>
+                <button id="exit">Salir</button>
+                </div>
+                 </div>`);
+        const finalScore = document.getElementById("finalScore");
+        const scoreDisplay = document.getElementById("score");
+        const playAgain = document.getElementById("playAgain");
+        const endGame = document.getElementById("exit")
+        playAgain.onclick = () => {
+            let scoreDisplay = document.getElementById("score");
+            scoreDisplay.innerHTML = "0";
+            restaurarVidas();
+            buildGameScreen();
+        }
+        endGame.onclick = () => {
+            buildAskUserName()
+        }
+        const playerScore = scoreDisplay.innerHTML;
+        finalScore.innerHTML = `TU PUNTAJE ES DE: <span>${playerScore}</span>pts!`;
+   }
+
+   const restaurarVidas = () => {
+       const displayVidas = document.getElementById("vidas")
+       displayVidas.innerHTML = 'Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span>' 
+   }
+
+   const resetAside = () => {
+       let newPlayer = document.querySelector("#nombreUsuario");
+       newPlayer.innerHTML = "";
+       let scoreDisplay = document.getElementById("score");
+       scoreDisplay.innerHTML = "0";
    }
    buildAskUserName();
 }
-
-    /* iniciarCanvas();
-    player.iniciarlizar();
-    document.addEventListener('keydown', event => player.mover(event));
-    const myInterval = setInterval(colorIntervalCallback, 1000); //Test para probar el cambio de color
-    requestAnimationFrame(update); */
