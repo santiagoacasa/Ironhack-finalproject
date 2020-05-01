@@ -15,7 +15,10 @@ class Juego {
     comienzo() {
         this.player = new Player(this.canvas);
         this.player.iniciarlizar();
-        const intervalColor = setInterval(this.player.cambioRandomDeColor(this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)]), 500);
+        const randomColor = function (obj) {
+          obj.color = obj.arrRGB[Math.floor(Math.random() * obj.arrRGB.length)];
+        };
+        const intervalColor = setInterval(randomColor(this.player), 500);
         const updateJuego = () => {
             this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
             if (Math.random() > 0.85) {
@@ -30,7 +33,6 @@ class Juego {
                 window.requestAnimationFrame(updateJuego);
             }
         }; 
-
         window.requestAnimationFrame(updateJuego);
     }
     update() {

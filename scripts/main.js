@@ -96,10 +96,6 @@ const jugar = () => {
        displayVidas.innerHTML = 'Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span>' 
    }
 
-    /*const randomColor = function (obj) {
-          obj.color = obj.arrRGB[Math.floor(Math.random() * obj.arrRGB.length)];
-      };*/
-
    const resetAside = () => {
        let newPlayer = document.querySelector("#nombreUsuario");
        newPlayer.innerHTML = "";

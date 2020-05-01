@@ -9,7 +9,7 @@ class Player {
         this.red = 'rgb(255,0,0)';
         this.green = 'rgb(0,255,0)';
         this.blue = 'rgb(0,0,255)';
-        this.arrRGB = [];
+        this.arrRGB = [this.red,this.green,this.blue];
         this.x = 0;
         this.y = 0;
         this.size = 20
@@ -22,7 +22,6 @@ class Player {
         this.color = this.red;
         this.x = this.canvas.width / 2;
         this.y = this.canvas.height /2 - (this.canvas.height / 8);
-        this.arrRGB.push(this.red, this.green, this.blue);
         this.name = document.querySelector("#nombreUsuario span").innerHTML;
         this.dibujar();
     };
@@ -66,10 +65,6 @@ class Player {
             return true;
         } 
         return false;
-    }
-
-    cambioRandomDeColor(unColor){
-        this.color = unColor;
     }
 
     perderVida(){
