@@ -18,9 +18,10 @@ class Obstaculo {
     }
     draw() {
         this.context.fillStyle = this.color;
+        this.context.save();
         this.context.beginPath();
         this.context.arc(this.x,this.y, this.size, 0, 2 * Math.PI);
         this.context.fill();
-       // this.context.fillRect(this.x, this.y - this.size / 2, this.size, this.size);
+        this.context.restore();
     };
 };

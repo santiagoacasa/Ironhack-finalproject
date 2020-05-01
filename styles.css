@@ -115,19 +115,6 @@ canvas#canvas {
     background: rgba(255, 255, 255, 0.6);
 }
 
-/*GAMEOVER*/
-div#gameOverMenu {
-    margin-top: -50px;
-}
-#gameOverMenu *{
-    margin-top: 20px;
-}
-
-
-#playAgain.botones{
-    margin-right: 20px;
-}
-
 /*¿COMO TE LLLAMAS?*/
 #askName div,
 input#playerName {
@@ -149,3 +136,17 @@ footer#footerCopy {
     bottom: 25px;
     margin: 0 auto;
 }
+
+/*GAMEOVER*/
+div#gameOverMenu {
+    margin-top: -50px;
+}
+#gameOverMenu *{
+    margin-top: 20px;
+}
+
+
+#playAgain.botones{
+    margin-right: 20px;
+}
+

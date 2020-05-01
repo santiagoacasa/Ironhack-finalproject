@@ -9,21 +9,20 @@ class Juego {
         this.obstSizeMax = 40;
         this.obstSizeMin = 10;
         this.gameOver = false;
-        this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)'];
+        this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
         this.obsColor = "";
     }
     comienzo() {
         this.player = new Player(this.canvas);
-
         this.player.iniciarlizar();
-        
+        const intervalColor = setInterval(this.player.cambioRandomDeColor(this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)]), 500);
         const updateJuego = () => {
             this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
             if (Math.random() > 0.85) {
                 const x = Math.random() * this.canvas.width;
                 this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin));
             }
-            this.checkColisiones();
+            this.checkColisiones(intervalColor);
             this.update();
             this.clearCanvas();
             this.drawCanvas();
@@ -50,7 +49,7 @@ class Juego {
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
     };
 
-    checkColisiones(){
+    checkColisiones(intervalColor){
         const scoreDisplay = document.getElementById("score");
         const colorPlayer = this.player.color;
         this.obstaculos.forEach((obst,index) => {
@@ -66,14 +65,18 @@ class Juego {
                 if (this.player.lives === 0){
                     this.gameOver = true;
                     this.onGameOver();
+                    clearInterval(intervalColor);
                 }
             }
         });
     }
 
+
     callbackGameOver(callback){
         this.onGameOver = callback;
     }
+
+
 
     playAgainCall(){
         this.player.lives = 3;

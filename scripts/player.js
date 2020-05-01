@@ -21,7 +21,7 @@ class Player {
     iniciarlizar(){
         this.color = this.red;
         this.x = this.canvas.width / 2;
-        this.y = this.canvas.height /2;
+        this.y = this.canvas.height /2 - (this.canvas.height / 8);
         this.arrRGB.push(this.red, this.green, this.blue);
         this.name = document.querySelector("#nombreUsuario span").innerHTML;
         this.dibujar();
@@ -33,29 +33,30 @@ class Player {
     mover(event) {
         switch (event.code) {
             case "ArrowLeft":
-                if (this.x >= 0) {
+                if (this.x - this.size / 2 > 0) {
                     this.x -= this.speedX;
                 }
                 break;
             case "ArrowRight":
-                if (this.x <= this.canvas.width) {
+                if (this.x + this.size / 2 <= this.canvas.width - this.size) {
                     this.x += this.speedX;
                 }
                 break;
             case "ArrowUp":
-                if (this.y >= 0) {
+                if (this.y - this.size / 2 > 0) {
                     this.y -= this.speedY;
                 }
                 break;
             case "ArrowDown":
-                if (this.y < this.canvas.height) {
+                if (this.y + this.size / 2 <= this.canvas.height - this.size / 2) {
                     this.y += this.speedY;
                 }
                 break;
             default:
                 break;
         };
-    };
+    }
+
     checkColision(obstaculo){
         const colisionDerecha = this.x + this.size / 2 > obstaculo.x - (obstaculo.size - 2);
         const colisionIzquierda = this.x - this.size / 2 < obstaculo.x + (obstaculo.size - 2);
@@ -65,6 +66,10 @@ class Player {
             return true;
         } 
         return false;
+    }
+
+    cambioRandomDeColor(unColor){
+        this.color = unColor;
     }
 
     perderVida(){

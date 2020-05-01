@@ -4,11 +4,7 @@ window.onload = () => {
 }
 
 const jugar = () => {
-   const randomColor = function (obj) {
-       obj.color = obj.arrRGB[Math.floor(Math.random() * obj.arrRGB.length)];
-   };
-
-   const setPlayerName = function () {
+ const setPlayerName = function () {
        let playerName = document.querySelector("#playerName");
        let newPlayer = document.querySelector("#nombreUsuario");
        if(playerName.value != ""){
@@ -61,6 +57,7 @@ const jugar = () => {
        //ACA ARRANCA EL JUEGO.
        juego.comienzo();
        juego.player.iniciarlizar()
+       //juego.callbackRandomColor(randomColor(juego.player));
        const movePlayer = (event) => { 
            juego.player.mover(event)
        }
@@ -98,6 +95,10 @@ const jugar = () => {
        const displayVidas = document.getElementById("vidas")
        displayVidas.innerHTML = 'Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span>' 
    }
+
+    /*const randomColor = function (obj) {
+          obj.color = obj.arrRGB[Math.floor(Math.random() * obj.arrRGB.length)];
+      };*/
 
    const resetAside = () => {
        let newPlayer = document.querySelector("#nombreUsuario");
