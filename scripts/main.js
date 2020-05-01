@@ -11,8 +11,13 @@ const jugar = () => {
    const setPlayerName = function () {
        let playerName = document.querySelector("#playerName");
        let newPlayer = document.querySelector("#nombreUsuario");
-       newPlayer.innerHTML = `Hola <span>${playerName.value}</span>!`;
-       buildReglasJuego();
+       if(playerName.value != ""){
+        newPlayer.innerHTML = `Hola <span>${playerName.value}</span>!`;
+        buildReglasJuego();
+       } else {
+           alert("Por favor ingresa un nombre 😄")
+       }
+       
    }
 
    const buildHtml = function (html) {
@@ -23,11 +28,11 @@ const jugar = () => {
    const buildAskUserName = function () {
        resetAside();
        buildHtml(`<div id="askName" class="areaJuego">
-    <h2>¿Como te llamas?</h2>
-    <div>
-        <input type="text" id="playerName" name="playerName" placeholder="Nombre">
-        <div><button id="setName">Aceptar</button></div>
-    </div>
+    <h2>¿Cómo te llamas?</h2>
+        <div>
+        <input type="text" id="playerName" name="playerName" placeholder="Nombre" required>
+        </div>
+        <div><a href="#" class="botones" id="setName">Aceptar</a></div>
 </div>`)
        const setName = document.querySelector("#setName");
        setName.addEventListener("click", setPlayerName);
@@ -37,10 +42,10 @@ const jugar = () => {
        buildHtml(`<div id="reglas" class="areaJuego">
                     <h2>Reglas del juego</h2>
                     <p>ACA VAN LAS REGLAS DEL JUEGO</p>
-                    <div><button id="botonJugar">JUGAR</button></div>
+                    <div><a href="#" id="jugar" class="botones">JUGAR</a></div>
                 </div>`);
-       const botonJugar = document.querySelector("#botonJugar");
-       botonJugar.addEventListener('click', buildGameScreen);
+       const botonesJugar = document.querySelector("#jugar");
+       botonesJugar.addEventListener('click', buildGameScreen);
    }
 
    const buildGameScreen = function () {
@@ -63,15 +68,16 @@ const jugar = () => {
    }
 
    const buildGameOver = () => {
-       buildHtml(`<div>
-                <img src="imgs/gameover.png">
-                <div>
-                <p id = "finalScore"></p>
-                <button id="playAgain">Volver a jugar</button>
-                <button id="exit">Salir</button>
-                </div>
+       buildHtml(`<div id="gameover" class="areaJuego">
+                    <div>
+                        <img src="imgs/gameover2.png">
+                    </div>
+                    <div id="gameOverMenu">
+                        <p id="finalScore"></p>
+                        <div><a href="#" class="botones" id="playAgain">Volver a jugar</a><a href="#" class="botones" id="exit"> Salir </a></div>
+                    </div>
                  </div>`);
-        const finalScore = document.getElementById("finalScore");
+        const finalScoreMensaje = document.getElementById("finalScore");
         const scoreDisplay = document.getElementById("score");
         const playAgain = document.getElementById("playAgain");
         const endGame = document.getElementById("exit")
@@ -85,7 +91,7 @@ const jugar = () => {
             buildAskUserName()
         }
         const playerScore = scoreDisplay.innerHTML;
-        finalScore.innerHTML = `TU PUNTAJE ES DE: <span>${playerScore}</span>pts!`;
+        finalScoreMensaje.innerHTML = `TU PUNTAJE FUE DE: <span>${playerScore}</span>pts!`;
    }
 
    const restaurarVidas = () => {

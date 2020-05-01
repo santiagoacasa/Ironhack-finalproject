@@ -1,9 +1,9 @@
 "use strict";
 class Obstaculo {
-    constructor(canvas, x,color) {
-        this.size = 20;
+    constructor(canvas, x,color,radius) {
+        this.size = radius;
         this.canvas = canvas;
-        this.ctx = this.canvas.getContext("2d");
+        this.context = this.canvas.getContext("2d");
         this.red = 'rgb(255,0,0)';
         this.green = 'rgb(0,255,0)';
         this.blue = 'rgb(0,0,255)';
@@ -17,7 +17,10 @@ class Obstaculo {
         this.y = this.y + this.speed;
     }
     draw() {
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillRect(this.x, this.y - this.size / 2, this.size, this.size);
+        this.context.fillStyle = this.color;
+        this.context.beginPath();
+        this.context.arc(this.x,this.y, this.size, 0, 2 * Math.PI);
+        this.context.fill();
+       // this.context.fillRect(this.x, this.y - this.size / 2, this.size, this.size);
     };
 };

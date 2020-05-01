@@ -13,10 +13,8 @@ class Player {
         this.x = 0;
         this.y = 0;
         this.size = 20
-        this.directionX = 1;
-        this.directionY = -1;
-        this.speedX = 24;
-        this.speedY = 24;
+        this.speedX = 25;
+        this.speedY = 25;
         this.lives = 3;
         this.score = 0;
     }
@@ -59,10 +57,10 @@ class Player {
         };
     };
     checkColision(obstaculo){
-        const colisionDerecha = this.x + this.size / 2 > obstaculo.x - obstaculo.size / 2;
-        const colisionIzquierda = this.x - this.size / 2 < obstaculo.x + obstaculo.size / 2;
-        const colisionArriba = this.y + this.size / 2 > obstaculo.y - obstaculo.size / 2;
-        const colisionAbajo = this.y - this.size / 2 < obstaculo.y + obstaculo.size / 2;
+        const colisionDerecha = this.x + this.size / 2 > obstaculo.x - (obstaculo.size - 2);
+        const colisionIzquierda = this.x - this.size / 2 < obstaculo.x + (obstaculo.size - 2);
+        const colisionArriba = this.y + this.size / 2 > obstaculo.y - (obstaculo.size - 2);
+        const colisionAbajo = this.y - this.size / 2 < obstaculo.y + (obstaculo.size - 2);
         if (colisionArriba && colisionDerecha && colisionIzquierda && colisionAbajo){
             return true;
         } 

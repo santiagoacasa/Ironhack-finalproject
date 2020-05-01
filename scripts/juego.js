@@ -6,6 +6,8 @@ class Juego {
         this.context = canvas.getContext('2d');
         this.player;
         this.obstaculos = [];
+        this.obstSizeMax = 40;
+        this.obstSizeMin = 10;
         this.gameOver = false;
         this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)'];
         this.obsColor = "";
@@ -17,9 +19,9 @@ class Juego {
         
         const updateJuego = () => {
             this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
-            if (Math.random() > 0.90) {
+            if (Math.random() > 0.85) {
                 const x = Math.random() * this.canvas.width;
-                this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor));
+                this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin));
             }
             this.checkColisiones();
             this.update();

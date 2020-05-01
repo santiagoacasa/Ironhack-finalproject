@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <header><h1 id="titulo">----- EL NOMBRE DEL JUEGO IRIA ACA ------</h1></header>
+    <header><h1 id="titulo">----- SI TUVIESE NOMBRE IRIA ACA ------</h1></header>
     <div id="container">
         <div id="juegoContainer"> <!--Aplicar aca las dimensiones del area de juego-->
             
@@ -23,7 +23,7 @@
         </aside>
     </div>
 
-   <!--<footer><p>&copy Hecho por SantiCasa</p></footer>-->
+   <footer id="footerCopy"><div><p>&copy Hecho en cuarentena por Santi Casa</p></div></footer>
     <script src="scripts/main.js"></script>
     <script src="scripts/gameArea.js"></script>
     <script src="scripts/player.js"></script>
@@ -33,20 +33,15 @@
 </html>
 
 <!--
-CANVAS
-<canvas id="canvas" class="areaJuego" width="500" height="400"></canvas>
-DATOS DEL USUARIO
-<div id="askName" class="areaJuego">
-    <h2>¿Como te llamas?</h2>
+<div id="gameover" class="areaJuego">
     <div>
-        <input type="text" id="playerName" name="playerName" placeholder="Nombre">
-        <div><button id="setName">Aceptar</button></div>
+        <img src="imgs/gameover2.png">
+    </div>
+    <div id="gameOverMenu">
+        <p id="finalScore"></p>
+        <button id="playAgain">Volver a jugar</button>
+        <button id="exit">Salir</button>
     </div>
 </div>
-<div id="reglas" class="areaJuego">
-    <h2>Reglas del juego</h2>
-    <p>ACA VAN LAS REGLAS DEL JUEGO<p>
-    <div><button id="botonJugar">JUGAR</button></div>
-</div> 
 -->
 
