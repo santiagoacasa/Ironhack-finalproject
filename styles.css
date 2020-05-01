@@ -96,7 +96,7 @@ header{
     margin: 90px auto 0 auto;
     border: 15px double coral;
     width: 80%;
-    height: 500px;
+    height: 55%;
     display: flex;
     justify-content: space-evenly;
 }
