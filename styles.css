@@ -8,7 +8,7 @@
 html{
     box-sizing: border-box;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     font-family: 'Press Start 2P', cursive;
 }
 
@@ -96,7 +96,7 @@ header{
     margin: 70px auto 0 auto;
     border: 15px double coral;
     width: 80%;
-    height: 55%;
+    height: 60%;
     display: flex;
     justify-content: space-evenly;
 }
