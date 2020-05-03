@@ -1,6 +1,5 @@
 "use strict"
 window.onload = () => {
-    localStorage.setItem("highscore", JSON.stringify([]));
     jugar();
 }
 
@@ -65,7 +64,6 @@ const jugar = () => {
        juego.callbackGameOver(buildGameOver);
        //ACA ARRANCA EL JUEGO.
        juego.comienzo();
-       juego.player.iniciarlizar();
        const movePlayer = (event) => { 
            juego.player.mover(event)
        }
@@ -90,9 +88,12 @@ const jugar = () => {
             let scoreDisplay = document.getElementById("score");
             scoreDisplay.innerHTML = "0";
             restaurarVidas();
+            resetHighScoreTable();
+            buildHighScore();
             buildGameScreen();
         }
         endGame.onclick = () => {
+            resetHighScoreTable();
             buildAskUserName()
         }
         const playerScore = scoreDisplay.innerHTML;
@@ -101,7 +102,7 @@ const jugar = () => {
 
    const restaurarVidas = () => {
        const displayVidas = document.getElementById("vidas")
-       displayVidas.innerHTML = 'Vidas: <span>&#128154</span><span>&#128154</span><span>&#128154</span>' 
+       displayVidas.innerHTML = 'Vidas: <span><img src="imgs/greenHeart.svg" class="corazones"></span><span><img src="imgs/greenHeart.svg" class="corazones"></span><span><img src="imgs/greenHeart.svg" class="corazones"></span>'
    }
 
    const resetAside = () => {
@@ -112,39 +113,49 @@ const jugar = () => {
    }
 
    const buildHighScore = () => {
-       const highScoresOrdenados = [...JSON.parse(localStorage.highscore)].sort((a, b) => {
-           return b.score - a.score
-       });
-       let tablaScoresBody = document.querySelector("#tablaScores tbody");
-       if (highScoresOrdenados.length != 0) {
-           if(highScoresOrdenados.length > 3){
-               for (let idx = 0; idx < 3; idx++) {
-                   let scoreElement = document.createElement("td");
-                   let cellTextName = document.createTextNode(highScoresOrdenados[idx].playerName);
-                   let cellTextScore = document.createTextNode(highScoresOrdenados[idx].score);
-                   let separador = document.createTextNode("-");
-                   scoreElement.appendChild(cellTextName);
-                   scoreElement.appendChild(separador);
-                   scoreElement.appendChild(cellTextScore);
-                   let scoreRow = document.createElement("tr");
-                   scoreRow.appendChild(scoreElement);
-                   tablaScoresBody.appendChild(scoreRow);
-               }
-           } else {
-               for (let idx = 0; idx < highScoresOrdenados.length; idx++) {
-                   let scoreElement = document.createElement("td");
-                   let cellTextName = document.createTextNode(highScoresOrdenados[idx].playerName);
-                   let cellTextScore = document.createTextNode(highScoresOrdenados[idx].score);
-                   let separador = document.createTextNode("-");
-                   scoreElement.appendChild(cellTextName);
-                   scoreElement.appendChild(separador);
-                   scoreElement.appendChild(cellTextScore);
-                   let scoreRow = document.createElement("tr");
-                   scoreRow.appendChild(scoreElement);
-                   tablaScoresBody.appendChild(scoreRow);
+       if (localStorage.getItem("highscore") != null){
+           const highScoresOrdenados = [...JSON.parse(localStorage.highscore)].sort((a, b) => {
+               return b.score - a.score
+           });
+           if (highScoresOrdenados.length != 0) {
+               if (highScoresOrdenados.length > 3) {
+                   buildTabla(3, highScoresOrdenados); //MOSTRAR SOLO LOS 3 MEJORES SCORES
+               } else {
+                   buildTabla(highScoresOrdenados.length, highScoresOrdenados);
                }
            }
-           
+        }
+    }
+    
+    //FUNCION PARA CREAR LA TABLA DE HIGHSCORES CON LONGITUDES VARIABLES
+    const buildTabla = (arrLength, highScoreArr) => {
+        let tablaScoresBody = document.querySelector("#tablaScores tbody");
+        let tablaScoresElem = document.querySelectorAll("#tablaScores tbody tr");
+        if(tablaScoresElem.length === 0){
+            for (let idx = 0; idx < arrLength; idx++) {
+                appendHighScore(highScoreArr, tablaScoresBody, idx);
+            }
+        } else {
+            appendHighScore(highScoreArr, tablaScoresBody, highScoreArr.length - 1);
+        }
+    }
+
+   const appendHighScore = (highScoreArr, tableBody,idx) => {
+       let scoreElement = document.createElement("td");
+       let cellTextName = document.createTextNode(`${highScoreArr[idx].playerName}  -  ${highScoreArr[idx].score}`);
+       scoreElement.appendChild(cellTextName);
+       let scoreRow = document.createElement("tr");
+       scoreRow.classList.add("scoreElem");
+       scoreRow.appendChild(scoreElement);
+       tableBody.appendChild(scoreRow);  
+   }
+
+   const resetHighScoreTable = () => {
+       let tablaScoresBody = document.querySelector("#tablaScores tbody");
+       let tablaScoresElem = tablaScoresBody.firstElementChild;
+       while(tablaScoresElem){
+           tablaScoresBody.removeChild(tablaScoresElem);
+           tablaScoresElem = tablaScoresBody.firstElementChild;
        }
    }
 

@@ -1,5 +1,5 @@
 "use strict"
-
+//
 class Juego {
     constructor(canvas) {
         this.canvas = canvas;
@@ -20,17 +20,17 @@ class Juego {
         };
         this.player = new Player(this.canvas);
         this.player.iniciarlizar();
-        const randomColor = function (obj) {
-          obj.color = obj.arrRGB[Math.floor(Math.random() * obj.arrRGB.length)];
-        };
-        const intervalColor = setInterval(randomColor(this.player), 500);
+        const cambioColorTimeOut = setTimeout (() => {const colorInterval = setInterval(() => {this.player.randomPlayerColor(this.arrRGB);}, 5130)
+        return colorInterval
+         }, 5000);
+        const updateObsSpeed = setInterval(() => {this.updateObsSpeed()},10000); 
         const updateJuego = () => {
             this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
             if (Math.random() > 0.92) {
                 const x = Math.random() * this.canvas.width;
                 this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin));
             }
-            this.checkColisiones(intervalColor);
+            this.checkColisiones();
             this.update();
             this.clearCanvas();
             this.drawCanvas();
@@ -40,12 +40,24 @@ class Juego {
                 highScore.playerName = this.player.name;
                 highScore.score = this.player.score;
                 highScoreArr.push(highScore);
-                localStorage.setItem("highscore", JSON.stringify(highScoreArr));
+                this.guardarHighScore(highScoreArr);
+                clearInterval(cambioColorTimeOut);
+                clearInterval(updateObsSpeed);
             }
         }; 
         window.requestAnimationFrame(updateJuego);
     }
-    
+
+    guardarHighScore(highScoreArr) {
+        localStorage.setItem("highscore", JSON.stringify(highScoreArr));
+    }
+
+    updateObsSpeed(){
+        this.obstaculos.forEach((obst) => {
+            obst.updateSpeed();
+        });
+    }
+
     update() {
         this.obstaculos.forEach((obst) => {
             obst.update();
@@ -62,7 +74,7 @@ class Juego {
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
     };
 
-    checkColisiones(intervalColor){
+    checkColisiones(){
         const scoreDisplay = document.getElementById("score");
         const colorPlayer = this.player.color;
         this.obstaculos.forEach((obst,index) => {
@@ -78,19 +90,13 @@ class Juego {
                 if (this.player.lives === 0){
                     this.gameOver = true;
                     this.onGameOver();
-                    clearInterval(intervalColor);
                 }
             }
         });
     }
 
-
     callbackGameOver(callback){
         this.onGameOver = callback;
-    }
-
-    playAgainCall(){
-        this.player.lives = 3;
     }
 
 };

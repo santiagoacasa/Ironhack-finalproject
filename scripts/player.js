@@ -67,6 +67,11 @@ class Player {
         return false;
     }
 
+    randomPlayerColor(colorArr) {
+        this.color = colorArr[Math.floor(Math.random() * colorArr.length)];
+
+    }
+
     perderVida(){
         const displayVidas = document.getElementById("vidas")
         const vidas = document.querySelectorAll("#vidas span");

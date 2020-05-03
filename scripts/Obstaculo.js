@@ -4,18 +4,19 @@ class Obstaculo {
         this.size = radius;
         this.canvas = canvas;
         this.context = this.canvas.getContext("2d");
-        this.red = 'rgb(255,0,0)';
-        this.green = 'rgb(0,255,0)';
-        this.blue = 'rgb(0,0,255)';
-        this.arrRGB = ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)'];
         this.color = color;
         this.x = x;
         this.y = 0;
-        this.speed = 5;
+        this.speed = 4;
     }
     update() {
         this.y = this.y + this.speed;
     }
+
+    updateSpeed(){
+        ++this.speed;
+    };
+
     draw() {
         this.context.fillStyle = this.color;
         this.context.save();

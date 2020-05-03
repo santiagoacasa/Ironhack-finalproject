@@ -67,27 +67,33 @@ header{
     background-color: whitesmoke;
 }
 
-#infoDeJuego *{
+#infoDeJuego h2{
     margin-top: 20px;
 }
 
-#vidas p {
-    margin-top: -40px;
-    margin-left: -20px;
-}
-
 #highScore {
-    margin-top: 30px;
+    margin-top: 3rem;
     text-align: center;
 }
 
 #highScore h3 {
     text-decoration: underline;
+    margin-bottom: 2rem;
 }
 
 #infoDeJuego div#highScore table#tablaScores {
     width: 90%;
     text-align: center;
+}
+
+#infoDeJuego div#highScore table#tablaScores .scoreElem {
+    margin-bottom: 5px;
+}
+
+img.corazones {
+    margin: 0 4px 0 0;
+    width: 28px;
+    height: 28px;
 }
 
 
