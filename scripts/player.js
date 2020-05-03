@@ -21,7 +21,7 @@ class Player {
     iniciarlizar(){
         this.color = this.red;
         this.x = this.canvas.width / 2;
-        this.y = this.canvas.height /2 - (this.canvas.height / 8);
+        this.y = this.canvas.height - this.size;
         this.name = document.querySelector("#nombreUsuario span").innerHTML;
         this.dibujar();
     };

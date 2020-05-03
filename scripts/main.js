@@ -1,28 +1,30 @@
 "use strict"
 window.onload = () => {
+    localStorage.setItem("highscore", JSON.stringify([]));
     jugar();
 }
 
 const jugar = () => {
- const setPlayerName = function () {
-       let playerName = document.querySelector("#playerName");
-       let newPlayer = document.querySelector("#nombreUsuario");
-       if(playerName.value != ""){
-        newPlayer.innerHTML = `Hola <span>${playerName.value}</span>!`;
-        buildReglasJuego();
-       } else {
-           alert("Por favor ingresa un nombre 😄")
-       }
-       
-   }
-
    const buildHtml = function (html) {
        const juegoContainer = document.querySelector("#juegoContainer");
        juegoContainer.innerHTML = html;
    }
 
+   const setPlayerName = function () {
+       let playerName = document.querySelector("#playerName");
+       let newPlayer = document.querySelector("#nombreUsuario");
+       if (playerName.value != "") {
+           newPlayer.innerHTML = `Hola <span>${playerName.value}</span>!`;
+           buildReglasJuego();
+       } else {
+           alert("Por favor ingresa un nombre 😄")
+       }
+
+   }
+
    const buildAskUserName = function () {
        resetAside();
+       buildHighScore();
        buildHtml(`<div id="askName" class="areaJuego">
     <h2>¿Cómo te llamas?</h2>
         <div>
@@ -37,7 +39,14 @@ const jugar = () => {
    const buildReglasJuego = function () {
        buildHtml(`<div id="reglas" class="areaJuego">
                     <h2>Reglas del juego</h2>
-                    <p>ACA VAN LAS REGLAS DEL JUEGO</p>
+                    <p>Esto es bastante sencillo \n
+                       <ul>
+                            <li>Te moves con las flechas del teclado</li>
+                            <li>Sumas puntos recolectando los circulos de tu mismo color</li>
+                            <li>Perdes una vida cuando chocas con cualquier otro</li>
+                            <li>No pierdas</li>
+                        </ul>
+                     </p>
                     <div><a href="#" id="jugar" class="botones">JUGAR</a></div>
                 </div>`);
        const botonesJugar = document.querySelector("#jugar");
@@ -56,8 +65,7 @@ const jugar = () => {
        juego.callbackGameOver(buildGameOver);
        //ACA ARRANCA EL JUEGO.
        juego.comienzo();
-       juego.player.iniciarlizar()
-       //juego.callbackRandomColor(randomColor(juego.player));
+       juego.player.iniciarlizar();
        const movePlayer = (event) => { 
            juego.player.mover(event)
        }
@@ -102,5 +110,44 @@ const jugar = () => {
        let scoreDisplay = document.getElementById("score");
        scoreDisplay.innerHTML = "0";
    }
+
+   const buildHighScore = () => {
+       const highScoresOrdenados = [...JSON.parse(localStorage.highscore)].sort((a, b) => {
+           return b.score - a.score
+       });
+       let tablaScoresBody = document.querySelector("#tablaScores tbody");
+       if (highScoresOrdenados.length != 0) {
+           if(highScoresOrdenados.length > 3){
+               for (let idx = 0; idx < 3; idx++) {
+                   let scoreElement = document.createElement("td");
+                   let cellTextName = document.createTextNode(highScoresOrdenados[idx].playerName);
+                   let cellTextScore = document.createTextNode(highScoresOrdenados[idx].score);
+                   let separador = document.createTextNode("-");
+                   scoreElement.appendChild(cellTextName);
+                   scoreElement.appendChild(separador);
+                   scoreElement.appendChild(cellTextScore);
+                   let scoreRow = document.createElement("tr");
+                   scoreRow.appendChild(scoreElement);
+                   tablaScoresBody.appendChild(scoreRow);
+               }
+           } else {
+               for (let idx = 0; idx < highScoresOrdenados.length; idx++) {
+                   let scoreElement = document.createElement("td");
+                   let cellTextName = document.createTextNode(highScoresOrdenados[idx].playerName);
+                   let cellTextScore = document.createTextNode(highScoresOrdenados[idx].score);
+                   let separador = document.createTextNode("-");
+                   scoreElement.appendChild(cellTextName);
+                   scoreElement.appendChild(separador);
+                   scoreElement.appendChild(cellTextScore);
+                   let scoreRow = document.createElement("tr");
+                   scoreRow.appendChild(scoreElement);
+                   tablaScoresBody.appendChild(scoreRow);
+               }
+           }
+           
+       }
+   }
+
    buildAskUserName();
 }
+

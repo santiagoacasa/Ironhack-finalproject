@@ -13,6 +13,11 @@ class Juego {
         this.obsColor = "";
     }
     comienzo() {
+        let highScoreArr = JSON.parse(localStorage.getItem('highscore')) || [];
+        let highScore = {
+            playerName: "",
+            score: 0
+        };
         this.player = new Player(this.canvas);
         this.player.iniciarlizar();
         const randomColor = function (obj) {
@@ -21,7 +26,7 @@ class Juego {
         const intervalColor = setInterval(randomColor(this.player), 500);
         const updateJuego = () => {
             this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
-            if (Math.random() > 0.85) {
+            if (Math.random() > 0.92) {
                 const x = Math.random() * this.canvas.width;
                 this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin));
             }
@@ -31,10 +36,16 @@ class Juego {
             this.drawCanvas();
             if(!this.gameOver){
                 window.requestAnimationFrame(updateJuego);
+            } else {
+                highScore.playerName = this.player.name;
+                highScore.score = this.player.score;
+                highScoreArr.push(highScore);
+                localStorage.setItem("highscore", JSON.stringify(highScoreArr));
             }
         }; 
         window.requestAnimationFrame(updateJuego);
     }
+    
     update() {
         this.obstaculos.forEach((obst) => {
             obst.update();
@@ -77,8 +88,6 @@ class Juego {
     callbackGameOver(callback){
         this.onGameOver = callback;
     }
-
-
 
     playAgainCall(){
         this.player.lives = 3;
