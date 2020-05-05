@@ -24,10 +24,10 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 150px;
 }
 
-#titulo {
+div#titulo {
     text-align: center;
     width: 100%;
 }
@@ -104,7 +104,7 @@ img.corazones {
 }
 
 #container {
-    margin: 70px auto 0 auto;
+    margin: 40px auto 0 auto;
     border: 15px double coral;
     width: 80%;
     height: 60%;

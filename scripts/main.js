@@ -3,7 +3,7 @@ window.onload = () => {
     jugar();
 }
 
-const jugar = () => {
+const jugar = () => { 
    const buildHtml = function (html) {
        const juegoContainer = document.querySelector("#juegoContainer");
        juegoContainer.innerHTML = html;
