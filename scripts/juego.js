@@ -11,24 +11,32 @@ class Juego {
         this.gameOver = false;
         this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
         this.obsColor = "";
+        this.obstSpeed = 3;
     }
+
     comienzo() {
+        //LECTURA DEL LOCALSTORAGE Y SE ASIGNA AL ARRAY DE HIGHSCORE, SI LOCALSTORAGE ESTA VACIO SE INICIALIZA COMO UN ARRAY VACIO
         let highScoreArr = JSON.parse(localStorage.getItem('highscore')) || [];
         let highScore = {
             playerName: "",
             score: 0
         };
+        //CREACION DEL PLAYER
         this.player = new Player(this.canvas);
         this.player.iniciarlizar();
-        const cambioColorTimeOut = setTimeout (() => {const colorInterval = setInterval(() => {this.player.randomPlayerColor(this.arrRGB);}, 5130)
-        return colorInterval
-         }, 5000);
-        const updateObsSpeed = setInterval(() => {this.updateObsSpeed()},10000); 
+        //EVENT LISTENER PARA MOVER AL JUGADOR
+        const movePlayer = (event) => {
+            this.player.mover(event)
+        }
+        document.addEventListener("keydown", movePlayer);
+        //UN TIMEOUT PARA LUEGO EJECUTAR EL INTERVALO DE CAMBIO RANDOM DE COLOR
+        const cambioColorTimeOut = this.timeOutStartRandomColor();
+        const updateObsSpeed = this.speedInterval(); 
         const updateJuego = () => {
             this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
-            if (Math.random() > 0.92) {
+            if (Math.random() > 0.91) {
                 const x = Math.random() * this.canvas.width;
-                this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin));
+                this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin, this.obstSpeed));
             }
             this.checkColisiones();
             this.update();
@@ -44,8 +52,21 @@ class Juego {
                 clearInterval(cambioColorTimeOut);
                 clearInterval(updateObsSpeed);
             }
-        }; 
-        window.requestAnimationFrame(updateJuego);
+        };
+            window.requestAnimationFrame(updateJuego);
+
+    }
+
+    
+    timeOutStartRandomColor() {
+        return setTimeout(() => {
+            const colorInterval = setInterval(() => { this.player.randomPlayerColor(this.arrRGB); }, 5130);
+            return colorInterval;
+        }, 5000);
+    }
+
+    speedInterval() {
+        return setInterval(() => { this.updateObsSpeed(); }, 5000);
     }
 
     guardarHighScore(highScoreArr) {
@@ -53,9 +74,7 @@ class Juego {
     }
 
     updateObsSpeed(){
-        this.obstaculos.forEach((obst) => {
-            obst.updateSpeed();
-        });
+        this.obstSpeed += 0.25;
     }
 
     update() {
@@ -70,6 +89,7 @@ class Juego {
             obst.draw();
         });
     }
+
     clearCanvas(){
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
     };

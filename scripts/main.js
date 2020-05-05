@@ -63,11 +63,7 @@ const jugar = () => {
        const juego = new Juego(canvas);
        juego.callbackGameOver(buildGameOver);
        //ACA ARRANCA EL JUEGO.
-       juego.comienzo();
-       const movePlayer = (event) => { 
-           juego.player.mover(event)
-       }
-       document.addEventListener("keydown", movePlayer);   
+       juego.comienzo();  
    }
 
    const buildGameOver = () => {

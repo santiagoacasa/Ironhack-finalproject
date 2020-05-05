@@ -22,6 +22,7 @@ class Player {
         this.name = document.querySelector("#nombreUsuario span").innerHTML;
         this.dibujar();
     };
+
     dibujar() {
         this.context.fillStyle = this.color;
         this.context.fillRect(this.x, this.y, this.size, this.size);
@@ -39,12 +40,12 @@ class Player {
                 }
                 break;
             case "ArrowUp":
-                if (this.y - this.size / 2 > 0) {
+                if (this.y + this.size / 2 > 0 ) {
                     this.y -= this.speedY;
                 }
                 break;
             case "ArrowDown":
-                if (this.y + this.size / 2 < this.canvas.height) {
+                if (this.y - this.size / 2 < this.canvas.height) {
                     this.y += this.speedY;
                 }
                 break;

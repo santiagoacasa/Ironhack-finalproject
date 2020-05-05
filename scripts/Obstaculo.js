@@ -1,21 +1,18 @@
 "use strict";
 class Obstaculo {
-    constructor(canvas, x,color,radius) {
+    constructor(canvas, x,color,radius,speed) {
         this.size = radius;
         this.canvas = canvas;
         this.context = this.canvas.getContext("2d");
         this.color = color;
         this.x = x;
         this.y = 0;
-        this.speed = 4;
+        this.speed = speed;
     }
     update() {
         this.y = this.y + this.speed;
     }
 
-    updateSpeed(){
-        ++this.speed;
-    };
 
     draw() {
         this.context.fillStyle = this.color;
