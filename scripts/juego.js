@@ -12,6 +12,8 @@ class Juego {
         this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
         this.obsColor = "";
         this.obstSpeed = 3;
+        this.gameOverSound = new Audio(musica.gameOver.src);
+        this.pointSound = new Audio(musica.juntaPuntos.src);
     }
 
     comienzo() {
@@ -21,6 +23,7 @@ class Juego {
             playerName: "",
             score: 0
         };
+        this.gameOverSound.volume = 0.5;
         //CREACION DEL PLAYER
         this.player = new Player(this.canvas);
         this.player.iniciarlizar();
@@ -101,6 +104,7 @@ class Juego {
             const colorObst = obst.color;
             if(this.player.checkColision(obst)){
                 if(colorObst == colorPlayer){
+                    this.pointSound.play();
                     this.player.score += 5;
                     scoreDisplay.innerHTML = this.player.score;
                 } else {
@@ -110,6 +114,7 @@ class Juego {
                 if (this.player.lives === 0){
                     this.gameOver = true;
                     this.onGameOver();
+                    this.gameOverSound.play();
                 }
             }
         });

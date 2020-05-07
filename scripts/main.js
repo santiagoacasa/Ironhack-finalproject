@@ -4,6 +4,28 @@ window.onload = () => {
 }
 
 const jugar = () => { 
+    const exitAudio = new Audio(musica.botonSalir.src);
+    exitAudio.volume = musica.botonSalir.volume;
+    const menuAudio = new Audio(musica.menu.src);
+    menuAudio.loop = musica.menu.loop;
+    menuAudio.volume = musica.menu.volume;
+    const botonXaudio = new Audio(musica.botonX.src);
+    botonXaudio.volume = musica.botonX.volume;
+    document.addEventListener("keydown", event => {
+        if (event.key == "F7"){
+            switch (musica.menu.isPlaying) {
+                case false:
+                    menuAudio.play();
+                    musica.menu.isPlaying = true;
+                    break;
+                case true:
+                    musica.stopAudio(menuAudio);
+                    musica.menu.isPlaying = false;
+                default:
+                    break;
+            }
+        }
+    })
    const buildHtml = function (html) {
        const juegoContainer = document.querySelector("#juegoContainer");
        juegoContainer.innerHTML = html;
@@ -32,7 +54,9 @@ const jugar = () => {
         <div><a href="#" class="botones" id="setName">Aceptar</a></div>
 </div>`)
        const setName = document.querySelector("#setName");
-       setName.addEventListener("click", setPlayerName);
+       setName.addEventListener("click", () => {
+           botonXaudio.play();
+           setPlayerName();});
    }
 
    const buildReglasJuego = function () {
@@ -49,7 +73,9 @@ const jugar = () => {
                     <div><a href="#" id="jugar" class="botones">JUGAR</a></div>
                 </div>`);
        const botonesJugar = document.querySelector("#jugar");
-       botonesJugar.addEventListener('click', buildGameScreen);
+       botonesJugar.addEventListener('click', () => {
+           botonXaudio.play();
+           buildGameScreen()});
    }
 
    const buildGameScreen = function () {
@@ -89,6 +115,7 @@ const jugar = () => {
             buildGameScreen();
         }
         endGame.onclick = () => {
+            exitAudio.play();
             resetHighScoreTable();
             buildAskUserName()
         }

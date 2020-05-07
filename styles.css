@@ -96,6 +96,12 @@ img.corazones {
     height: 28px;
 }
 
+div#audioInfo {
+    align-self: baseline;
+    font-size: 0.7rem;
+}
+
+
 
 /*PAGINAS DE PANTALLA PRINCIPAL*/
 #juegoContainer {

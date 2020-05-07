@@ -14,6 +14,7 @@ class Player {
         this.speedY = 25;
         this.lives = 3;
         this.score = 0;
+        this.perderVidaSound = new Audio(musica.pierdeVida.src);
     }
     iniciarlizar(){
         this.color = this.red;
@@ -76,6 +77,7 @@ class Player {
         if(vidas.length != 0){
             displayVidas.removeChild(vidas[0]);
         }
+        this.perderVidaSound.play();
         this.lives--;
     }
 
