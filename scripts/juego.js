@@ -6,12 +6,12 @@ class Juego {
         this.context = canvas.getContext('2d');
         this.player;
         this.obstaculos = [];
-        this.obstSizeMax = 40;
-        this.obstSizeMin = 10;
+        this.obstSizeMax = 45;
+        this.obstSizeMin = 15;
         this.gameOver = false;
         this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
         this.obsColor = "";
-        this.obstSpeed = 3.5;
+        this.obstSpeed = 4;
         this.gameOverSound = new Audio(musica.gameOver.src);
         this.pointSound = new Audio(musica.juntaPuntos.src);
     }

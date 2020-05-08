@@ -78,17 +78,15 @@ div#titulo {
 }
 
 #highScore h3 {
+    text-align: center;
     text-decoration: underline;
-    margin-bottom: 2rem;
+    margin-bottom: 0.8rem;
 }
 
 #infoDeJuego div#highScore table#tablaScores {
-    width: 90%;
+    width: 100%;
     text-align: center;
-}
-
-#infoDeJuego div#highScore table#tablaScores .scoreElem {
-    margin-bottom: 5px;
+    border-spacing: 10px;
 }
 
 img.corazones {
@@ -102,7 +100,7 @@ div#audioInfo {
     text-align: center;
     font-size: 0.8rem;
     position: absolute;
-    bottom: 5px;
+    bottom: 8px;
 }
 
 
@@ -116,7 +114,7 @@ div#audioInfo {
 #container {
     margin: 40px auto 0 auto;
     border: 15px double coral;
-    width: 80%;
+    width: 70%;
     height: 60%;
     display: flex;
     justify-content: space-evenly;
@@ -148,6 +146,7 @@ input#playerName {
     height: 25px;
     border: 2px solid coral;
     font-family: inherit;
+    font-size: small;
     padding: 5px;
 }
 
@@ -178,6 +177,7 @@ footer#footerCopy {
     position: fixed;
     bottom: 5px;
     margin: 0 auto;
+    font-size: small;
 }
 
 

@@ -10,8 +10,8 @@ class Player {
         this.x = 0;
         this.y = 0;
         this.size = 20
-        this.speedX = 25;
-        this.speedY = 25;
+        this.speedX = 30;
+        this.speedY = 30;
         this.lives = 3;
         this.score = 0;
         this.perderVidaSound = new Audio(musica.pierdeVida.src);
