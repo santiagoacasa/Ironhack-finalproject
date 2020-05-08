@@ -7,9 +7,10 @@ class Juego {
         this.player;
         this.obstaculos = [];
         this.obstSizeMax = 45;
-        this.obstSizeMin = 15;
+        this.obstSizeMin = 20;
         this.gameOver = false;
-        this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
+        this.arrObsColor = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
+        this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)'];
         this.obsColor = "";
         this.obstSpeed = 4;
         this.gameOverSound = new Audio(musica.gameOver.src);
@@ -36,8 +37,8 @@ class Juego {
         const cambioColorTimeOut = this.timeOutStartRandomColor();
         const updateObsSpeed = this.speedInterval(); 
         const updateJuego = () => {
-            this.obsColor = this.arrRGB[Math.floor(Math.random() * this.arrRGB.length)];
-            if (Math.random() > 0.91) {
+            this.obsColor = this.arrObsColor[Math.floor(Math.random() * this.arrObsColor.length)];
+            if (Math.random() > 0.90) {
                 const x = Math.random() * this.canvas.width;
                 this.obstaculos.push(new Obstaculo(this.canvas, x, this.obsColor, Math.random() * (this.obstSizeMax - this.obstSizeMin) + this.obstSizeMin, this.obstSpeed));
             }
@@ -77,7 +78,7 @@ class Juego {
     }
 
     updateObsSpeed(){
-        this.obstSpeed += 0.30;
+        this.obstSpeed += 0.50;
     }
 
     update() {

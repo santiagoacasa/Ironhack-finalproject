@@ -31,22 +31,22 @@ class Player {
     mover(event) {
         switch (event.code) {
             case "ArrowLeft":
-                if (this.x - this.size > 0) {
+                if (this.x - this.size / 2 > 0) {
                     this.x -= this.speedX;
                 }
                 break;
             case "ArrowRight":
-                if (this.x + this.size / 2 < this.canvas.width - this.size) {
+                if (this.x + this.size < this.canvas.width) { //this.x + this.size < this.canvas.width - this.size / 2
                     this.x += this.speedX;
                 }
                 break;
             case "ArrowUp":
-                if (this.y + this.size / 2 > 0 ) {
+                if (this.y - this.size / 2 >= 0) {
                     this.y -= this.speedY;
                 }
                 break;
             case "ArrowDown":
-                if (this.y - this.size / 2 < this.canvas.height) {
+                if (this.y + this.size < this.canvas.height) {
                     this.y += this.speedY;
                 }
                 break;
