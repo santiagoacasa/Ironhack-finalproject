@@ -41,7 +41,7 @@ class Player {
                 }
                 break;
             case "ArrowUp":
-                if (this.y - this.size / 2 >= 0) {
+                if (this.y - this.size > 0) {
                     this.y -= this.speedY;
                 }
                 break;
