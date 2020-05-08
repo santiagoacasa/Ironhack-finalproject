@@ -36,7 +36,7 @@ class Player {
                 }
                 break;
             case "ArrowRight":
-                if (this.x + this.size < this.canvas.width) { //this.x + this.size < this.canvas.width - this.size / 2
+                if (this.x + this.size < this.canvas.width) {
                     this.x += this.speedX;
                 }
                 break;
