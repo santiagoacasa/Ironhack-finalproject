@@ -1,4 +1,5 @@
-"use strict";
+"use strict"
+
 class Obstaculo {
     constructor(canvas, x,color,radius,speed) {
         this.size = radius;
