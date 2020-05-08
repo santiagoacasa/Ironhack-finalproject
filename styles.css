@@ -60,6 +60,7 @@ div#titulo {
 
 /*ASIDE CON LA INFO DEL JUEGO*/
 #infoDeJuego {
+    position: relative;
     padding-top: 10px;
     padding-left: 20px;
     width: 30%;
@@ -97,8 +98,11 @@ img.corazones {
 }
 
 div#audioInfo {
-    align-self: baseline;
-    font-size: 0.7rem;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 5px;
 }
 
 

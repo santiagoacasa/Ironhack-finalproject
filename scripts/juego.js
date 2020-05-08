@@ -11,7 +11,7 @@ class Juego {
         this.gameOver = false;
         this.arrRGB = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(251,163,47)'];
         this.obsColor = "";
-        this.obstSpeed = 3;
+        this.obstSpeed = 3.5;
         this.gameOverSound = new Audio(musica.gameOver.src);
         this.pointSound = new Audio(musica.juntaPuntos.src);
     }
@@ -77,7 +77,7 @@ class Juego {
     }
 
     updateObsSpeed(){
-        this.obstSpeed += 0.25;
+        this.obstSpeed += 0.30;
     }
 
     update() {
