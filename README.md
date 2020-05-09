@@ -1,4 +1,4 @@
-# (Nombre del juego a definir)
+# Si Tuviese Nombre Iria Aca
 
 
 ## Descripción
@@ -21,10 +21,10 @@ Se basara en los reflejos del jugador ya que el personaje ira cambiando aleatori
 * Restar una vida al colisionar con un obstaculo.
 
 ## Links
-​
+
 ### Git
 
-[Github Repo](https://github.com/santiagoacasa/ironhack-finalproject.git)
+[Github Repo](https://github.com/santiagoacasa/siTuvieseNombreIriaAca)
 
 ### Kanban
 
